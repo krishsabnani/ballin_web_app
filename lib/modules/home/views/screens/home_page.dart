@@ -1,3 +1,4 @@
+import 'package:ballin_web_app/modules/home/data/models/blog_model.dart';
 import 'package:ballin_web_app/modules/home/data/services/blogs_provider.dart';
 import 'package:ballin_web_app/modules/home/views/screens/blog_page.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/blog_card.dart';
@@ -28,27 +29,39 @@ class _HomePageState extends State<HomePage> {
       child: blogsProvider.isLoading ? CircularProgressIndicator():ListView(
         shrinkWrap: true,
         children: [
-          AppText.Heading(text: "BLOGS",color: ThemeColors.blackColor,size: 24),
+          AppText.Heading(text: "Ballin Blogs",color: ThemeColors.blackColor,size: 24),
           Padding(
             padding: const EdgeInsets.all(10),
             child: LayoutBuilder(builder: (context,constraints){
               if(constraints.maxWidth > 700){
-                return buildBlogs(0,blogsProvider);
+                return buildBlogs(0,blogsProvider.ballinBlogs);
               }
               else
-              return buildBlogs(1,blogsProvider);
+              return buildBlogs(1,blogsProvider.ballinBlogs);
             }),
           ),
           SizedBox(height: 30,),
-          AppText.Heading(text: "BLOGS",color: ThemeColors.blackColor,size: 24),
+          AppText.Heading(text: "General Blogs",color: ThemeColors.blackColor,size: 24),
           Padding(
             padding: const EdgeInsets.all(10),
             child: LayoutBuilder(builder: (context,constraints){
               if(constraints.maxWidth > 700){
-                return buildBlogs(0,blogsProvider);
+                return buildBlogs(0,blogsProvider.generalBlogs);
               }
               else
-                return buildBlogs(1,blogsProvider);
+                return buildBlogs(1,blogsProvider.generalBlogs);
+            }),
+          ),
+          SizedBox(height: 30,),
+          AppText.Heading(text: "Fitness Blogs",color: ThemeColors.blackColor,size: 24),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: LayoutBuilder(builder: (context,constraints){
+              if(constraints.maxWidth > 700){
+                return buildBlogs(0,blogsProvider.fitnessBlogs);
+              }
+              else
+                return buildBlogs(1,blogsProvider.fitnessBlogs);
             }),
           ),
         ],
@@ -57,7 +70,7 @@ class _HomePageState extends State<HomePage> {
   }
   
   
-  Widget buildBlogs(int type,BlogsProvider blogsProvider) {
+  Widget buildBlogs(int type,List<BlogModel> blogs) {
 
       if(type == 0){
         return SingleChildScrollView(
@@ -65,23 +78,23 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: List.generate(blogsProvider.blogs.length, (index) => Padding(
+            children: List.generate(blogs.length, (index) => Padding(
               padding:  EdgeInsets.symmetric(horizontal: 40),
               child: GestureDetector(
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(settings: RouteSettings(
-                    name: "/Blog/${blogsProvider.blogs[index].id}"
+                    name: "/Blog/${blogs[index].id}"
                   ),
-                      builder: (context) => BlogPage(blogsProvider.blogs[index])));
+                      builder: (context) => BlogPage(blogs[index])));
                 },
-                  child: BlogCard(blogsProvider.blogs[index])),
+                  child: BlogCard(blogs[index])),
             )),
           ),
         );
       }
     else
       return ListView.separated(
-        itemCount: blogsProvider.blogs.length,
+        itemCount: blogs.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
@@ -89,11 +102,11 @@ class _HomePageState extends State<HomePage> {
             return GestureDetector(
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(settings: RouteSettings(
-                      name: "/Blog/${blogsProvider.blogs[index].id}"
+                      name: "/Blog/${blogs[index].id}"
                   ),
-                      builder: (context) => BlogPage(blogsProvider.blogs[index])));
+                      builder: (context) => BlogPage(blogs[index])));
                 },
-                child: BlogCard(blogsProvider.blogs[index]));
+                child: BlogCard(blogs[index]));
       },
       separatorBuilder: (context,index){
           return SizedBox(height: 40,);
