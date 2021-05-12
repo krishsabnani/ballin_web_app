@@ -1,1 +1,1 @@
-enum Tabs{Home,Shot_Balls,About,Ballin_App}
+enum Tabs{Home,Shot_Balls,About,Ballin_Team}

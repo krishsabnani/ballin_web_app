@@ -83,7 +83,7 @@ class _BallinAppBarState extends State<BallinAppBar> {
                       ),
                       MenuWidget(
                         title: "Ballin App",
-                        isSelected: pageProvider.currentTab == Tabs.Ballin_App,
+                        isSelected: pageProvider.currentTab == Tabs.Ballin_Team,
                         onPress: (){
                           currentTabIndex = appBarOptions.indexOf("Ballin App");
                           pageProvider.changeTab(currentTabIndex);
