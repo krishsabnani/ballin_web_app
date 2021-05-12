@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       padding: EdgeInsets.all(10),
       child: blogsProvider.isLoading ? CircularProgressIndicator():ListView(
+        shrinkWrap: true,
         children: [
           AppText.Heading(text: "BLOGS",color: ThemeColors.blackColor,size: 24),
           Padding(
@@ -50,7 +51,6 @@ class _HomePageState extends State<HomePage> {
                 return buildBlogs(1,blogsProvider);
             }),
           ),
-          Footer()
         ],
       )
     );

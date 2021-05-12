@@ -7,38 +7,47 @@ import 'package:url_launcher/url_launcher.dart';
 
 class MemberWidget extends StatelessWidget {
   MemberModel member;
-  MemberWidget(this.member);
+  int type;
+  MemberWidget(this.member,this.type);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundImage: NetworkImage(member.img),
-        ),
-        SizedBox(height: 10,),
-        AppText.SubHeading(text: member.name,color: ThemeColors.blackColor,size: 18),
-        SizedBox(height: 10,),
-        AppText.Content(text: member.desg,color: ThemeColors.blackColor,size: 16),
-        SizedBox(height: 10,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(member.socialIds.toJson().keys.length, (index) =>
-              IconButton(icon: Icon(getIcon(member.socialIds.toJson().keys.elementAt(index))), onPressed: (){
-                launch(member.socialIds.toJson()[member.socialIds.toJson().keys.elementAt(index)]);
-              })),
-        )
-      ],
+    return Container(
+      width: type == 1?MediaQuery.of(context).size.width/4 - 5: MediaQuery.of(context).size.width/2,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(member.img),
+            backgroundColor: ThemeColors.blackColor,
+          ),
+          SizedBox(height: 10,),
+          AppText.SubHeading(text: member.name,color: ThemeColors.blackColor,size: 18),
+          SizedBox(height: 10,),
+          AppText.Content(text: member.desg,color: ThemeColors.blackColor,size: 16),
+          SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(member.socialIds.toJson().keys.length, (index) =>
+                IconButton(icon: Icon(getIcon(member.socialIds.toJson().keys.elementAt(index)),color: ThemeColors.blackColor,), onPressed: (){
+                  if(member.socialIds.toJson().keys.elementAt(index) == "email"){
+                    launch("mailto:" + member.socialIds.toJson()[member.socialIds.toJson().keys.elementAt(index)]);
+                  }
+                  else launch(member.socialIds.toJson()[member.socialIds.toJson().keys.elementAt(index)]);
+                })),
+          ),
+        ],
+      ),
     );
   }
 
   IconData getIcon(String key){
-    if(key == "instagram"){
-      return FontAwesomeIcons.instagram;
-    }
-    else if(key == "linkedIn"){
+    print(key);
+     if(key == "linkedIn"){
       return FontAwesomeIcons.linkedinIn;
+    }
+    else if(key == "email"){
+      return FontAwesomeIcons.envelope;
     }
   }
 

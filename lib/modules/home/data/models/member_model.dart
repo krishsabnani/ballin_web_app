@@ -31,19 +31,19 @@ class MemberModel {
 }
 
 class SocialIds {
-  String instagram;
+  String email;
   String linkedIn;
 
-  SocialIds({this.instagram, this.linkedIn});
+  SocialIds({this.email, this.linkedIn});
 
   SocialIds.fromJson(Map<String, dynamic> json) {
-    instagram = json['instagram'];
+    email = json['email'];
     linkedIn = json['linkedIn'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['instagram'] = this.instagram;
+    data['email'] = this.email;
     data['linkedIn'] = this.linkedIn;
     return data;
   }
