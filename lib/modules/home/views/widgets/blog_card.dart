@@ -4,6 +4,7 @@ import 'package:ballin_web_app/utilities/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class BlogCard extends StatefulWidget {
@@ -48,9 +49,18 @@ class _BlogCardState extends State<BlogCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppText.SubHeading(text: widget.blogModel.type,color: ThemeColors.subSecondaryColor),
-                      AppText.SubHeading(text: DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(DateTime.fromMillisecondsSinceEpoch(widget.blogModel.timeStamp)),
-                          color: ThemeColors.subSecondaryColor)
+                      Text(widget.blogModel.type.toUpperCase(),
+
+                      style: GoogleFonts.raleway(
+                        fontSize: 11,
+                        fontWeight:  FontWeight.w600,
+                        fontStyle:  FontStyle.normal,
+                        color: ThemeColors.subSecondaryColor,
+                        letterSpacing: 3
+                      ),
+                      ),
+                      AppText.Content(text: DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(DateTime.fromMillisecondsSinceEpoch(widget.blogModel.timeStamp)),
+                          color: ThemeColors.subSecondaryColor, size: 11)
                     ],
                   ),
                   SizedBox(height: 15,),

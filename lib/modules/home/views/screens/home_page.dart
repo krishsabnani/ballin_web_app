@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     BlogsProvider blogsProvider = Provider.of<BlogsProvider>(context);
     return Container(
       padding: EdgeInsets.all(10),
-      child: blogsProvider.isLoading ? CircularProgressIndicator():ListView(
+      child: blogsProvider.isLoading ? Center(child: CircularProgressIndicator()):ListView(
         shrinkWrap: true,
         children: [
           AppText.Heading(text: "Ballin Blogs",color: ThemeColors.blackColor,size: 24),
