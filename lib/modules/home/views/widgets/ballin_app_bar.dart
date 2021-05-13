@@ -15,7 +15,7 @@ class BallinAppBar extends StatefulWidget {
 
 class _BallinAppBarState extends State<BallinAppBar> {
 
-  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin App"];
+  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin Team"];
   int currentTabIndex = 0;
 
   @override
@@ -82,10 +82,10 @@ class _BallinAppBarState extends State<BallinAppBar> {
                         },
                       ),
                       MenuWidget(
-                        title: "Ballin App",
-                        isSelected: pageProvider.currentTab == Tabs.Ballin_App,
+                        title: "Ballin Team",
+                        isSelected: pageProvider.currentTab == Tabs.Ballin_Team,
                         onPress: (){
-                          currentTabIndex = appBarOptions.indexOf("Ballin App");
+                          currentTabIndex = appBarOptions.indexOf("Ballin Team");
                           pageProvider.changeTab(currentTabIndex);
                           widget.popFunc();
                           setState(() {

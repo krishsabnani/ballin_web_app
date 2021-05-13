@@ -28,6 +28,7 @@ class _AboutPageState extends State<AboutPage> {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
     return pageProvider.isLoading ? CircularProgressIndicator()
         :ListView(
+      shrinkWrap: true,
         children: [
           LayoutBuilder(builder: (context,constraints){
             if(constraints.maxWidth > 700){
@@ -119,7 +120,6 @@ class _AboutPageState extends State<AboutPage> {
               ],
             ),
           ),
-          Footer()
         ],
       );
   }

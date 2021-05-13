@@ -1,7 +1,9 @@
 import 'package:ballin_web_app/modules/home/data/services/page_provider.dart';
 import 'package:ballin_web_app/modules/home/views/screens/about_page.dart';
+import 'package:ballin_web_app/modules/home/views/screens/ballin_team_page.dart';
 import 'package:ballin_web_app/modules/home/views/screens/home_page.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/ballin_app_bar.dart';
+import 'package:ballin_web_app/modules/home/views/widgets/footer.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/side_drawer.dart';
 import 'package:ballin_web_app/utilities/screens/loading_page.dart';
 import 'package:ballin_web_app/utilities/screens/splash_screen.dart';
@@ -24,9 +26,14 @@ class _PageForkState extends State<PageFork> {
         child: BallinAppBar(popFunc: (){},),
         preferredSize: Size.fromHeight(100),
       ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: _buildPage(pageProvider.currentTab)
+      body: ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            child: _buildPage(pageProvider.currentTab)
+          ),
+          Footer()
+        ],
       ),
     );
   }
@@ -45,10 +52,8 @@ class _PageForkState extends State<PageFork> {
       case Tabs.About:
         return AboutPage();
         break;
-      case Tabs.Ballin_App:
-        return Container(
-          color: Colors.grey,
-        );
+      case Tabs.Ballin_Team:
+        return BallinTeamPage();
         break;
       default: return HomePage();
       break;

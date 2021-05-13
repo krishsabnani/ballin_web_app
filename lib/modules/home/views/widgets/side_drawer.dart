@@ -12,7 +12,7 @@ class SideDrawer extends StatefulWidget {
 
 class _SideDrawerState extends State<SideDrawer> {
 
-  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin App"];
+  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin Team"];
   int currentTabIndex = 0;
 
   @override
@@ -56,10 +56,10 @@ class _SideDrawerState extends State<SideDrawer> {
             },
           ),
           MenuWidget(
-            title: "Ballin App",
-            isSelected: currentTabIndex == appBarOptions.indexOf("Ballin App"),
+            title: "Ballin Team",
+            isSelected: currentTabIndex == appBarOptions.indexOf("Ballin Team"),
             onPress: (){
-              currentTabIndex = appBarOptions.indexOf("Ballin App");
+              currentTabIndex = appBarOptions.indexOf("Ballin Team");
               pageProvider.changeTab(currentTabIndex);
               setState(() {
 

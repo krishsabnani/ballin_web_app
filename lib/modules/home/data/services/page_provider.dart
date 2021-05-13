@@ -1,4 +1,5 @@
 
+import 'package:ballin_web_app/modules/home/data/models/member_model.dart';
 import 'package:ballin_web_app/utilities/tabs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,9 @@ class PageProvider extends ChangeNotifier{
   Tabs currentTab = Tabs.Home;
   List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin App"];
   bool isLoading = true;
+  bool isMembersLoading = true;
   dynamic aboutData = Map();
+  List<MemberModel> members = [];
 
 
   changeTab(int index){
@@ -22,7 +25,7 @@ class PageProvider extends ChangeNotifier{
       break;
       case 2 : currentTab = Tabs.About;
       break;
-      case 3 : currentTab = Tabs.Ballin_App;
+      case 3 : currentTab = Tabs.Ballin_Team;
       break;
       default: currentTab = Tabs.Home;
       break;
@@ -46,5 +49,21 @@ class PageProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+  getMembersContent([bool initial = false]) async {
+    if(members.isEmpty){
+      isMembersLoading = true;
+      initial ?null:notifyListeners();
+      
+      await FirebaseFirestore.instance.collection("Info").doc("Ballin Team").collection("Members").orderBy('index').get()
+      .then((snap){
+        snap.docs.forEach((element) {
+          members.add(MemberModel.fromJson(element.data()));
+        });
+      });
+      await Future.delayed(Duration(seconds: 1),(){});
+      isMembersLoading = false;
+      notifyListeners();
+    }
+  }
 
 }
