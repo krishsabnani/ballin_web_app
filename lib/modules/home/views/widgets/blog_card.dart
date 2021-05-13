@@ -30,7 +30,9 @@ class _BlogCardState extends State<BlogCard> {
             Container(
               height: 170,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),topRight: Radius.circular(15)
+                  ),
                   image: DecorationImage(
                     image: NetworkImage(widget.blogModel.imgUrl),
                     fit: BoxFit.cover,

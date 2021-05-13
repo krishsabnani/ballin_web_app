@@ -6,9 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 class AppText {
   static Widget Heading(
       {@required text, color, textAlign, textOverflow, size}) {
-    TextStyle textStyle = GoogleFonts.raleway(
+    TextStyle textStyle = GoogleFonts.montserrat(
       fontSize: size,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       color: color,
     );
     return Text(
