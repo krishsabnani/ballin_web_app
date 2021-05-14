@@ -96,7 +96,7 @@ class _BlogPageState extends State<BlogPage> {
     switch(content.type){
       case "image" :  return Image.network(content.data,fit: BoxFit.contain,);
         break;
-      case "para" :   return AppText.Content(text: content.data,size: 16,textAlign: TextAlign.left);
+      case "para" :   return AppText.Blog(text: content.data,size: 16,textAlign: TextAlign.left);
         break;
       case "sub" :    return AppText.SubHeading(text: content.data,size: 22,textAlign: TextAlign.left);
         break;

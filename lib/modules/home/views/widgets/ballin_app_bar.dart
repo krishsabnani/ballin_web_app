@@ -1,4 +1,5 @@
 import 'package:ballin_web_app/modules/home/data/services/page_provider.dart';
+import 'package:ballin_web_app/modules/home/views/screens/get_in_touch.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/menu_widget.dart';
 import 'package:ballin_web_app/utilities/app_text.dart';
 import 'package:ballin_web_app/utilities/colors.dart';
@@ -40,7 +41,16 @@ class _BallinAppBarState extends State<BallinAppBar> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,),
+                    child: GestureDetector(
+                        onTap: (){
+                          currentTabIndex = appBarOptions.indexOf("Home");
+                          pageProvider.changeTab(currentTabIndex);
+                          widget.popFunc();
+                          setState(() {
+
+                          });
+                        },
+                        child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,)),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -95,13 +105,20 @@ class _BallinAppBarState extends State<BallinAppBar> {
                       ),
                       Padding(
                         padding:  EdgeInsets.symmetric(horizontal:10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:  BorderRadius.circular(10),
-                            color: ThemeColors.highlightColor,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(
+                                settings: RouteSettings(name: 'get-in-touch'),
+                                builder: (context)=>GetInTouch()));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:  BorderRadius.circular(10),
+                              color: ThemeColors.highlightColor,
+                            ),
+                            padding: EdgeInsets.all(10),
+                            child: AppText.Heading(text: "Get in Touch",color: ThemeColors.darkWhite,size: 16),
                           ),
-                          padding: EdgeInsets.all(10),
-                          child: AppText.Heading(text: "Get in Touch",color: ThemeColors.darkWhite,size: 16),
                         ),
                       )
                     ],

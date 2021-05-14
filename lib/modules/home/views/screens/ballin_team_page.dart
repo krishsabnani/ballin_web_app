@@ -26,7 +26,7 @@ class _BallinTeamPageState extends State<BallinTeamPage> {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
     return Container(
       child: pageProvider.isMembersLoading ?
-          CircularProgressIndicator():
+          Center(child: CircularProgressIndicator()):
       LayoutBuilder(
             builder: (context, constraints) {
               if(constraints.maxWidth > 700)
@@ -50,6 +50,7 @@ class _BallinTeamPageState extends State<BallinTeamPage> {
       );
               else return ListView(
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   Center(child: AppText.Heading(text: "Our Team",color: ThemeColors.blackColor,size: 24)),
                   SizedBox(height: 40,),

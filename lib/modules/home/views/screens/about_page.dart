@@ -26,7 +26,7 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
-    return pageProvider.isLoading ? CircularProgressIndicator()
+    return pageProvider.isLoading ? Center(child: CircularProgressIndicator())
         :ListView(
       shrinkWrap: true,
         children: [

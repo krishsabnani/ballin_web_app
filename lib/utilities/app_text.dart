@@ -6,9 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 class AppText {
   static Widget Heading(
       {@required text, color, textAlign, textOverflow, size}) {
-    TextStyle textStyle = GoogleFonts.raleway(
+    TextStyle textStyle = GoogleFonts.montserrat(
       fontSize: size,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w500,
       color: color,
     );
     return Text(
@@ -64,7 +64,7 @@ class AppText {
     );
   }
 
-  static Widget Content(
+  static Widget Blog(
       {@required text,
       color,
       textAlign,
@@ -75,6 +75,35 @@ class AppText {
       fontWeight,
       decorationColor,
       max}) {
+    TextStyle textStyle = GoogleFonts.lato(
+      fontSize: size,
+      fontWeight: fontWeight ?? FontWeight.w500,
+      fontStyle: fontStyle ?? FontStyle.normal,
+      color: color,
+      decoration: decoration ?? TextDecoration.none,
+      decorationColor: decorationColor ?? ThemeColors.whiteColor,
+      height: 1.5,
+      wordSpacing: 3
+    );
+    return Text(
+      text,
+      style: textStyle,
+      textAlign: textAlign,
+      overflow: textOverflow,
+      maxLines: max,
+    );
+  }
+  static Widget Content(
+      {@required text,
+        color,
+        textAlign,
+        textOverflow,
+        size,
+        decoration,
+        fontStyle,
+        fontWeight,
+        decorationColor,
+        max}) {
     TextStyle textStyle = GoogleFonts.openSans(
       fontSize: size,
       fontWeight: fontWeight ?? FontWeight.w500,
@@ -92,7 +121,6 @@ class AppText {
       maxLines: max,
     );
   }
-
   static Widget SubContent(
       {@required text,
       color = Colors.blueGrey,
