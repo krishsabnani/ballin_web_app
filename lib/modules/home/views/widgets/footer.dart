@@ -30,11 +30,15 @@ class Footer extends StatelessWidget {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            IconButton(icon: Icon(FontAwesomeIcons.instagram,color: ThemeColors.whiteColor,),onPressed: (){},),
+                            IconButton(icon: Icon(FontAwesomeIcons.instagram,color: ThemeColors.whiteColor,),onPressed: (){
+                              launch('https://instagram.com/ballin.app?igshid=skdrk7ox7w93');
+                              },),
                             SizedBox(width: 10,),
                             IconButton(icon: Icon(FontAwesomeIcons.facebookF,color: ThemeColors.whiteColor,),onPressed: (){},),
                             SizedBox(width: 10,),
-                            IconButton(icon: Icon(FontAwesomeIcons.linkedinIn,color: ThemeColors.whiteColor,),onPressed: (){},),                        ],
+                            IconButton(icon: Icon(FontAwesomeIcons.linkedinIn,color: ThemeColors.whiteColor,),onPressed: (){
+                              launch('https://www.linkedin.com/company/theballin/');
+                            },),                        ],
                         )
                       ],
                     ),
@@ -47,9 +51,13 @@ class Footer extends StatelessWidget {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            IconButton(icon: Icon(FontAwesomeIcons.envelope,color: ThemeColors.whiteColor,),onPressed: (){},),
+                            IconButton(icon: Icon(FontAwesomeIcons.envelope,color: ThemeColors.whiteColor,),onPressed: (){
+                              launch('mailto:tech.semicoln@gmail.com');
+                            },),
                             SizedBox(width: 10,),
-                            IconButton(icon: Icon(FontAwesomeIcons.phoneAlt,color: ThemeColors.whiteColor,),onPressed: (){},),
+                            IconButton(icon: Icon(FontAwesomeIcons.phoneAlt,color: ThemeColors.whiteColor,),onPressed: (){
+                              launch('tel:+91 90947 60773');
+                            },),
                           ],
                         )
                       ],
