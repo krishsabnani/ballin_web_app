@@ -8,12 +8,17 @@ class BlogsProvider extends ChangeNotifier {
   List<BlogModel> generalBlogs = [];
   List<BlogModel> ballinBlogs = [];
   List<BlogModel> fitnessBlogs = [];
+  List<BlogModel> _allBlogs = [];
+
+  BlogModel currentBlog = BlogModel();
 
   bool isLoading = true;
+  bool blogLoading = true;
 
   getBlogs([bool initial = false]) async {
     isLoading = true;
     initial ?null :notifyListeners();
+    if(_allBlogs.isEmpty)
     await FirebaseFirestore.instance.collection("Blog").get().then((snap){
       snap.docs.forEach((element) {
         if(element.data()['type'] == 'Ballin'){
@@ -27,9 +32,31 @@ class BlogsProvider extends ChangeNotifier {
         }
       });
     });
+    _allBlogs.addAll(ballinBlogs);
+    _allBlogs.addAll(generalBlogs);
+    _allBlogs.addAll(fitnessBlogs);
     isLoading = false;
     notifyListeners();
 
+  }
+
+
+  getSingleBlog(String id) async {
+    blogLoading = true;
+    currentBlog = BlogModel();
+    if(_allBlogs.isEmpty){
+      await getBlogs(true);
+      if(_allBlogs.indexWhere((element) => element.id == id) != -1)
+      currentBlog = _allBlogs.firstWhere((element) => element.id == id);
+    }
+    else {
+      if(_allBlogs.indexWhere((element) => element.id == id) != -1)
+        currentBlog = _allBlogs.firstWhere((element) => element.id == id);
+      await Future.delayed(Duration(seconds: 2),(){});
+    }
+
+    blogLoading = false;
+    notifyListeners();
   }
 
 }
