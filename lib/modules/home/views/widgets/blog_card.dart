@@ -70,15 +70,15 @@ class _BlogCardState extends State<BlogCard> {
                       textOverflow: TextOverflow.ellipsis,max: 2),
                   SizedBox(height: 15,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Row(
+                  /*    Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(CupertinoIcons.heart_fill,color: ThemeColors.red,),
                           AppText.Content(text: " " + widget.blogModel.likes.toString())
                         ],
-                      ),
+                      ),*/
                       AppText.Content(text: "${widget.blogModel.readTime} min read")
                     ],
                   )

@@ -16,16 +16,16 @@ class BallinAppBar extends StatefulWidget {
 
 class _BallinAppBarState extends State<BallinAppBar> {
 
-  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin Team"];
+  List<String> appBarOptions = ["Home","Ballin Shots", "About","Ballin Team"];
   int currentTabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0),
       child: Material(
-        borderRadius: BorderRadius.circular(30),
+        //borderRadius: BorderRadius.circular(30),
         elevation: 25,
         child: LayoutBuilder(
           builder: (ctx, constraints) {
@@ -33,7 +33,7 @@ class _BallinAppBarState extends State<BallinAppBar> {
             return Container(
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                //borderRadius: BorderRadius.circular(30),
                 color: ThemeColors.blackColor,
               ),
               child: Row(
@@ -68,10 +68,10 @@ class _BallinAppBarState extends State<BallinAppBar> {
                         },
                       ),
                       MenuWidget(
-                        title: "Shot Balls",
+                        title: "Ballin Shots",
                         isSelected: pageProvider.currentTab == Tabs.Shot_Balls,
                         onPress: (){
-                          currentTabIndex = appBarOptions.indexOf("Shot Balls");
+                          currentTabIndex = appBarOptions.indexOf("Ballin Shots");
                           pageProvider.changeTab(currentTabIndex);
                           widget.popFunc();
                           setState(() {
@@ -127,18 +127,22 @@ class _BallinAppBarState extends State<BallinAppBar> {
               ),
             );
             else return Container(
-              padding: EdgeInsets.all(8),
+              //padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+              //  borderRadius: BorderRadius.circular(30),
                 color: ThemeColors.blackColor,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,),
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 65,width: 65,),
                   ),
+                  /*Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: AppText.SubContent(text: 'Ballin', color: Colors.white, size: 30),
+                  ),*/
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: IconButton(icon: Icon(Icons.menu,color: ThemeColors.whiteColor,), onPressed: (){

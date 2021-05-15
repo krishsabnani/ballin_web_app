@@ -27,13 +27,14 @@ class _BlogPageState extends State<BlogPage> {
       ),
       body: Container(
         child: ListView(
-          padding: EdgeInsets.all(20),
+
           children: [
             LayoutBuilder(builder: (context,constraint){
               if(constraint.maxWidth > 700){
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    SizedBox(height: 30,),
                     AppText.Heading(text: widget.blogModel.title,size: 40,textAlign: TextAlign.center),
                     SizedBox(height: 15,),
                     AppText.Content(text: widget.blogModel.desc,size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
@@ -48,9 +49,13 @@ class _BlogPageState extends State<BlogPage> {
               else return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  SizedBox(height: 20,),
                   AppText.Heading(text: widget.blogModel.title,size: 28,textAlign: TextAlign.center),
                   SizedBox(height: 15,),
-                  AppText.Content(text: widget.blogModel.desc,size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
+                  Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 10),
+                    child: AppText.Content(text: widget.blogModel.desc,size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
+                  ),
                   SizedBox(height: 15,),
                   AppText.Content(text: "Written By "+ widget.blogModel.author,size: 13,textAlign: TextAlign.center),
                   SizedBox(height: 15,),
@@ -60,15 +65,28 @@ class _BlogPageState extends State<BlogPage> {
               );
             }),
             SizedBox(height: 15,),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(widget.blogModel.content.length, (index) => Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 30),
-                child: buildContent(widget.blogModel.content[index]),
-              ))
+            LayoutBuilder(builder:(context,constraint){
+              if(constraint.maxWidth > 700){
+                return  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(widget.blogModel.content.length, (index) => Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 105),
+                      child: buildContent(widget.blogModel.content[index]),
+                    ))
 
-            ),
+                );
+              }
+              else return  Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(widget.blogModel.content.length, (index) => Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 30),
+                    child: buildContent(widget.blogModel.content[index]),
+                  ))
+
+              );
+            } ),
             SizedBox(height: 15,),
             Footer()
           ],

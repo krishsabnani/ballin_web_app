@@ -25,45 +25,88 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     BlogsProvider blogsProvider = Provider.of<BlogsProvider>(context);
     return Container(
-      padding: EdgeInsets.all(10),
+      //padding: EdgeInsets.all(10),
       child: blogsProvider.isLoading ? Center(child: CircularProgressIndicator()):ListView(
         shrinkWrap: true,
         children: [
-          AppText.Heading(text: "Ballin Blogs",color: ThemeColors.blackColor,size: 24),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: LayoutBuilder(builder: (context,constraints){
-              if(constraints.maxWidth > 700){
-                return buildBlogs(0,blogsProvider.ballinBlogs);
-              }
-              else
-              return buildBlogs(1,blogsProvider.ballinBlogs);
-            }),
+          Container(
+            height: 150,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppText.SubHeading(text: 'Welcome to Ballin!', color: ThemeColors.whiteColor, size: 25),
+                  SizedBox(height: 20,),
+                  AppText.Content(text: 'Stay safe. Stay home.', color: ThemeColors.whiteColor, size: 15),
+                ],
+              ),
+            ),
+            color: ThemeColors.blackColor,
           ),
+          SizedBox(height: 15,),
+       blogsProvider.ballinBlogs.isEmpty ? Center() : Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+         mainAxisAlignment: MainAxisAlignment.start,
+         children: [
+           Padding(
+             padding: const EdgeInsets.fromLTRB(25, 10, 10, 10),
+             child: AppText.Heading(text: "Ballin Blogs",color: ThemeColors.blackColor,size: 24),
+           ),
+           Padding(
+             padding: const EdgeInsets.all(20),
+             child: LayoutBuilder(builder: (context,constraints){
+               if(constraints.maxWidth > 700){
+                 return buildBlogs(0,blogsProvider.ballinBlogs);
+               }
+               else
+                 return buildBlogs(1,blogsProvider.ballinBlogs);
+             }),
+           ),
+         ],
+       ),
           SizedBox(height: 30,),
-          AppText.Heading(text: "General Blogs",color: ThemeColors.blackColor,size: 24),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: LayoutBuilder(builder: (context,constraints){
-              if(constraints.maxWidth > 700){
-                return buildBlogs(0,blogsProvider.generalBlogs);
-              }
-              else
-                return buildBlogs(1,blogsProvider.generalBlogs);
-            }),
-          ),
+          blogsProvider.generalBlogs.isEmpty ? Center() : Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.start,
+           children: [
+             Padding(
+               padding: const EdgeInsets.fromLTRB(25, 10, 10, 10),
+               child: AppText.Heading(text: "General Blogs",color: ThemeColors.blackColor,size: 24),
+             ),
+             Padding(
+               padding: const EdgeInsets.all(20),
+               child: LayoutBuilder(builder: (context,constraints){
+                 if(constraints.maxWidth > 700){
+                   return buildBlogs(0,blogsProvider.generalBlogs);
+                 }
+                 else
+                   return buildBlogs(1,blogsProvider.generalBlogs);
+               }),
+             ),
+           ],
+         ),
           SizedBox(height: 30,),
-          AppText.Heading(text: "Fitness Blogs",color: ThemeColors.blackColor,size: 24),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: LayoutBuilder(builder: (context,constraints){
-              if(constraints.maxWidth > 700){
-                return buildBlogs(0,blogsProvider.fitnessBlogs);
-              }
-              else
-                return buildBlogs(1,blogsProvider.fitnessBlogs);
-            }),
-          ),
+          blogsProvider.fitnessBlogs.isEmpty ? Center() : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 10, 10, 10),
+                child: AppText.Heading(text: "Fitness Blogs",color: ThemeColors.blackColor,size: 24),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 10, 10, 10),
+                child: LayoutBuilder(builder: (context,constraints){
+                  if(constraints.maxWidth > 700){
+                    return buildBlogs(0,blogsProvider.fitnessBlogs);
+                  }
+                  else
+                    return buildBlogs(1,blogsProvider.fitnessBlogs);
+                }),
+              ),
+            ],
+          )
         ],
       )
     );

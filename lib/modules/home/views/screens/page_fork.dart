@@ -29,7 +29,7 @@ class _PageForkState extends State<PageFork> {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(0),
             child: _buildPage(pageProvider.currentTab)
           ),
           Footer()
