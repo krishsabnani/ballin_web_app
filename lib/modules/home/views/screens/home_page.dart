@@ -125,10 +125,7 @@ class _HomePageState extends State<HomePage> {
               padding:  EdgeInsets.symmetric(horizontal: 40),
               child: GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(settings: RouteSettings(
-                    name: "/Blog/${blogs[index].id}"
-                  ),
-                      builder: (context) => BlogPage(blogs[index])));
+                  Navigator.pushNamed(context, "/blog/${blogs[index].id}");
                 },
                   child: BlogCard(blogs[index])),
             )),
@@ -144,10 +141,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context,index){
             return GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(settings: RouteSettings(
-                      name: "/Blog/${blogs[index].id}"
-                  ),
-                      builder: (context) => BlogPage(blogs[index])));
+                  Navigator.pushNamed(context, "/blog/${blogs[index].id}");
                 },
                 child: BlogCard(blogs[index]));
       },

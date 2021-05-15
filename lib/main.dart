@@ -1,5 +1,7 @@
 import 'package:ballin_web_app/modules/home/data/services/blogs_provider.dart';
 import 'package:ballin_web_app/modules/home/data/services/page_provider.dart';
+import 'package:ballin_web_app/modules/home/views/screens/blog_page.dart';
+import 'package:ballin_web_app/modules/home/views/screens/home_page.dart';
 import 'package:ballin_web_app/modules/home/views/screens/page_fork.dart';
 import 'package:ballin_web_app/utilities/screens/error_page.dart';
 import 'package:ballin_web_app/utilities/screens/loading_page.dart';
@@ -33,6 +35,34 @@ class _AppState extends State<App> {
       child: MaterialApp(
         title: "Ballin",
         debugShowCheckedModeBanner: false,
+        onGenerateRoute: (settings){
+          List<String> appBarOptions = ["home","shotBalls", "about","ballinTeam"];
+          var paths = settings.name.split("/");
+          var basePath = '';
+          var id = "";
+          if(paths[1] == ""){
+            basePath = "/";
+          }
+          else {
+            basePath = paths[1];
+            if(paths.length != 3){
+              return MaterialPageRoute(settings: settings,builder: (_) => ErrorPage(""));
+            }
+            else id = paths[2];
+          }
+
+          print(settings.name);
+          print(basePath);
+          print(id);
+
+          switch(basePath){
+            case '/' : return MaterialPageRoute(settings: settings,builder: (_)=> PageFork());
+            case 'blog' : return MaterialPageRoute(settings: settings,builder: (_) => BlogPage(id));
+            default :
+              Provider.of<PageProvider>(context,listen: false).changeTab(appBarOptions.indexOf(basePath));
+              return MaterialPageRoute(settings: settings,builder: (_) => PageFork());
+          }
+        },
         home: FutureBuilder(
           // Initialize FlutterFire:
           future: _initialization,
