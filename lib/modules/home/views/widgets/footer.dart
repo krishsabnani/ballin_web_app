@@ -71,7 +71,7 @@ class Footer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppText.Content(text: "By  ",color: ThemeColors.whiteColor,size: 14),
-                  Image.asset("assets/images/semicoln_logo.png",height: 20,)
+                  Image.asset("assets/images/semicoln_logow.png",scale: 14,)
                 ],
               )
             ],
@@ -115,7 +115,7 @@ class Footer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppText.Content(text: "By  ",color: ThemeColors.whiteColor,size: 14),
-                  Image.asset("assets/images/semicoln_logo.png", scale: 5,)
+                  Image.asset("assets/images/semicoln_logow.png", scale: 13,)
                 ],
               )
             ],
