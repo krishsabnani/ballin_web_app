@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         physics: NeverScrollableScrollPhysics(),
         children: [
           Container(
-            height: 150,
+            height: 200,
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

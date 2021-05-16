@@ -26,7 +26,7 @@ class _BallinAppBarState extends State<BallinAppBar> {
       padding: const EdgeInsets.all(0),
       child: Material(
         //borderRadius: BorderRadius.circular(30),
-        elevation: 25,
+        //elevation: 25,
         child: LayoutBuilder(
           builder: (ctx, constraints) {
             if(constraints.maxWidth > 700)

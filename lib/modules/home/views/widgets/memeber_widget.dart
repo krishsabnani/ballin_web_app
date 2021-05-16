@@ -22,9 +22,9 @@ class MemberWidget extends StatelessWidget {
             backgroundColor: ThemeColors.blackColor,
           ),
           SizedBox(height: 10,),
-          AppText.SubHeading(text: member.name,color: ThemeColors.blackColor,size: 18),
+          AppText.SubHeading(text: member.name,color: ThemeColors.blackColor,size: 18, textAlign: TextAlign.center),
           SizedBox(height: 10,),
-          AppText.Content(text: member.desg,color: ThemeColors.blackColor,size: 16),
+          AppText.Content(text: member.desg,color: ThemeColors.blackColor,size: 16, textAlign: TextAlign.center),
           SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

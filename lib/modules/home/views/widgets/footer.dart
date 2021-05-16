@@ -25,7 +25,7 @@ class Footer extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText.SubHeading(text: "Follow #Balin",color: ThemeColors.whiteColor,size: 20),
+                        AppText.SubHeading(text: "Follow #Ballin",color: ThemeColors.whiteColor,size: 20),
                         SizedBox(height: 20,),
                         Row(
                           mainAxisSize: MainAxisSize.min,
@@ -88,10 +88,10 @@ class Footer extends StatelessWidget {
                     launch('https://instagram.com/ballin.app?igshid=skdrk7ox7w93');
                   },),
                   SizedBox(width: 10,),
-                  IconButton(icon: Icon(FontAwesomeIcons.facebookF,color: ThemeColors.whiteColor,),onPressed: (){
+                /*  IconButton(icon: Icon(FontAwesomeIcons.facebookF,color: ThemeColors.whiteColor,),onPressed: (){
                     launch('https://www.linkedin.com/company/theballin/', forceWebView: true);
                   },),
-                  SizedBox(width: 10,),
+                  SizedBox(width: 10,),*/
                   IconButton(icon: Icon(FontAwesomeIcons.linkedinIn,color: ThemeColors.whiteColor,),onPressed: (){},),                        ],
               ),
               SizedBox(height: 20,),
