@@ -9,7 +9,7 @@ class PageProvider extends ChangeNotifier{
 
   int currentTabIndex = 0;
   Tabs currentTab = Tabs.Home;
-  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin App"];
+  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin App","Get In Touch"];
   bool isLoading = true;
   bool isMembersLoading = true;
   dynamic aboutData = Map();
@@ -26,6 +26,8 @@ class PageProvider extends ChangeNotifier{
       case 2 : currentTab = Tabs.About;
       break;
       case 3 : currentTab = Tabs.Ballin_Team;
+      break;
+      case 4 : currentTab = Tabs.Get_in_Touch;
       break;
       default: currentTab = Tabs.Home;
       break;
@@ -63,6 +65,17 @@ class PageProvider extends ChangeNotifier{
       await Future.delayed(Duration(seconds: 1),(){});
       isMembersLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<bool> pushTouchInfo(Map<String,dynamic> data) async{
+    try{
+      await FirebaseFirestore.instance.collection("GetInTouch").add(data);
+      return true;
+    }
+    catch(e){
+      print(e);
+      return false;
     }
   }
 

@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
       //padding: EdgeInsets.all(10),
       child: blogsProvider.isLoading ? Center(child: CircularProgressIndicator()):ListView(
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Container(
             height: 150,

@@ -16,7 +16,7 @@ class BallinAppBar extends StatefulWidget {
 
 class _BallinAppBarState extends State<BallinAppBar> {
 
-  List<String> appBarOptions = ["Home","Ballin Shots", "About","Ballin Team"];
+  List<String> appBarOptions = ["Home","Ballin Shots", "About","Ballin Team","Get In Touch"];
   int currentTabIndex = 0;
 
   @override
@@ -103,24 +103,18 @@ class _BallinAppBarState extends State<BallinAppBar> {
                           });
                         },
                       ),
-                      Padding(
-                        padding:  EdgeInsets.symmetric(horizontal:10),
-                        child: GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(
-                                settings: RouteSettings(name: 'get-in-touch'),
-                                builder: (context)=>GetInTouch()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:  BorderRadius.circular(10),
-                              color: ThemeColors.highlightColor,
-                            ),
-                            padding: EdgeInsets.all(10),
-                            child: AppText.Heading(text: "Get in Touch",color: ThemeColors.darkWhite,size: 16),
-                          ),
-                        ),
-                      )
+                      MenuWidget(
+                        title: "Get In Touch",
+                        isSelected: pageProvider.currentTab == Tabs.Get_in_Touch,
+                        onPress: (){
+                          currentTabIndex = appBarOptions.indexOf("Get In Touch");
+                          pageProvider.changeTab(currentTabIndex);
+                          widget.popFunc();
+                          setState(() {
+
+                          });
+                        },
+                      ),
                     ],
                   )
                 ],

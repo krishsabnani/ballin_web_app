@@ -31,7 +31,9 @@ class _BlogPageState extends State<BlogPage> {
   Widget build(BuildContext context) {
     BlogsProvider blogsProvider = Provider.of(context);
     return Scaffold(
-      endDrawer: SideDrawer(),
+      endDrawer: SideDrawer(popFunc: (){
+        Navigator.pop(context);
+      },),
       appBar: PreferredSize(
         child: BallinAppBar(popFunc: (){
           Navigator.pop(context);

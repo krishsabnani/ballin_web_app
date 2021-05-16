@@ -1,6 +1,7 @@
 import 'package:ballin_web_app/modules/home/data/services/page_provider.dart';
 import 'package:ballin_web_app/modules/home/views/screens/about_page.dart';
 import 'package:ballin_web_app/modules/home/views/screens/ballin_team_page.dart';
+import 'package:ballin_web_app/modules/home/views/screens/get_in_touch.dart';
 import 'package:ballin_web_app/modules/home/views/screens/home_page.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/ballin_app_bar.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/footer.dart';
@@ -21,7 +22,7 @@ class _PageForkState extends State<PageFork> {
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
     return Scaffold(
-      endDrawer: SideDrawer(),
+      endDrawer: SideDrawer(popFunc: (){},),
       appBar: PreferredSize(
         child: BallinAppBar(popFunc: (){},),
         preferredSize: Size.fromHeight(100),
@@ -54,6 +55,9 @@ class _PageForkState extends State<PageFork> {
         break;
       case Tabs.Ballin_Team:
         return BallinTeamPage();
+        break;
+      case Tabs.Get_in_Touch:
+        return GetInTouch();
         break;
       default: return HomePage();
       break;
