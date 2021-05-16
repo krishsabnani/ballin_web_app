@@ -15,12 +15,8 @@ class GetInTouch extends StatefulWidget {
 
 
 class _GetInTouchState extends State<GetInTouch> {
-  @override
-  void initState() {
-    super.initState();
-    PageProvider pageProvider = Provider.of<PageProvider>(context,listen: false);
-    pageProvider.getAboutUsContent(true);
-  }
+
+
   String name,email,number,reason;
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class _GetInTouchState extends State<GetInTouch> {
         ),
         preferredSize: Size.fromHeight(100),
       ),
-      body: pageProvider.isLoading ? CircularProgressIndicator() : ListView(
+      body: ListView(
         children: [
           Padding(
             padding: EdgeInsets.all(10),
@@ -108,15 +104,20 @@ class _GetInTouchState extends State<GetInTouch> {
                                     },
                                   ),
                                   SizedBox(height: 20,),
-                                 FlatButton(onPressed: (){},
+                                 GestureDetector(
+                                   onTap: (){
+                                     //pageProvider.queryMail('darshans.theclimber@gmail.com', 'Ram', '2398579857', 'Call me');
+                                   },
+                                   child: Container(
                                      color: ThemeColors.highlightColor,
-
                                      child: Center(
-                                   child: Padding(
+                                     child: Padding(
                                      padding:  EdgeInsets.symmetric(vertical: 15),
                                      child: AppText.SubHeading(text: 'Submit', color: ThemeColors.whiteColor),
+                                     ),
                                    ),
-                                 ))
+                                   ),
+                                 )
                                 ],
                               ),
                             ),
@@ -223,7 +224,9 @@ class _GetInTouchState extends State<GetInTouch> {
                       },
                     ),
                     SizedBox(height: 20,),
-                    FlatButton(onPressed: (){},
+                    FlatButton(onPressed: (){
+
+                    },
                         color: ThemeColors.highlightColor,
 
                         child: Center(

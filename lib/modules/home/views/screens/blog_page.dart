@@ -42,23 +42,26 @@ class _BlogPageState extends State<BlogPage> {
         child: blogsProvider.blogLoading ?Center(child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(ThemeColors.highlightColor),
         )):blogsProvider.currentBlog.id == null ?ErrorPage("Error 404"):ListView(
-          padding: EdgeInsets.all(20),
+          //padding: EdgeInsets.all(20),
           children: [
             LayoutBuilder(builder: (context,constraint){
               if(constraint.maxWidth > 700){
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: 30,),
-                    AppText.Heading(text: blogsProvider.currentBlog.title,size: 40,textAlign: TextAlign.center),
-                    SizedBox(height: 15,),
-                    AppText.Content(text: blogsProvider.currentBlog.desc,size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
-                    SizedBox(height: 15,),
-                    AppText.Content(text: "Written By "+ blogsProvider.currentBlog.author,size: 13,textAlign: TextAlign.center),
-                    SizedBox(height: 15,),
-                    AppText.Content(text: DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).
-                    format(DateTime.fromMillisecondsSinceEpoch(blogsProvider.currentBlog.timeStamp)),size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 30,),
+                      AppText.Heading(text: blogsProvider.currentBlog.title,size: 40,textAlign: TextAlign.center),
+                      SizedBox(height: 15,),
+                      AppText.Content(text: blogsProvider.currentBlog.desc,size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
+                      SizedBox(height: 15,),
+                      AppText.Content(text: "Written By "+ blogsProvider.currentBlog.author,size: 13,textAlign: TextAlign.center),
+                      SizedBox(height: 15,),
+                      AppText.Content(text: DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).
+                      format(DateTime.fromMillisecondsSinceEpoch(blogsProvider.currentBlog.timeStamp)),size: 13,textAlign: TextAlign.center,color: ThemeColors.subSecondaryColor),
+                    ],
+                  ),
                 );
               }
               else return Column(
@@ -96,7 +99,7 @@ class _BlogPageState extends State<BlogPage> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: List.generate(blogsProvider.currentBlog.content.length, (index) => Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 30),
+                    padding:  EdgeInsets.symmetric(horizontal: 20),
                     child: buildContent(blogsProvider.currentBlog.content[index]),
                   ))
 

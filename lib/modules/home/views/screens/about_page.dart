@@ -35,7 +35,7 @@ class _AboutPageState extends State<AboutPage> {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset("assets/images/Doodle.png"),
+                 // Image.asset("assets/images/Doodle.png"),
                   SizedBox(height: 20,),
                   Padding(
                     padding:  EdgeInsets.symmetric(horizontal: 20),
@@ -88,7 +88,7 @@ class _AboutPageState extends State<AboutPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset("assets/images/Doodle.png"),
+                  //Image.asset("assets/images/Doodle.png"),
                   SizedBox(height: 20,),
                   Image.network(pageProvider.aboutData['image 3']),//,height: 400,),//width: MediaQuery.of(context).size.width/2 - 40,),
                   SizedBox(height: 20,),

@@ -66,6 +66,33 @@ class PageProvider extends ChangeNotifier{
     }
   }
 
+  Future<void> queryMail(String email, name, number, query) async {
+    await FirebaseFirestore.instance.collection('Mail').doc().set({
+      "to": email,
+      "template": {
+        "name": 'GetInTouch',
+        "data": {"name": name}
+      }
+    }).catchError((e) {
+      print(e);
+    });
+
+    await FirebaseFirestore.instance.collection('Mail').doc().set({
+      "to": 'tech.semicoln.in',
+      "template": {
+        "name": 'GetInTouchAdmin',
+        "data": {
+          "name": name,
+          "email" : email,
+          "number" : number,
+          "reason" : query
+        }
+      }
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
 
 
 }
