@@ -34,8 +34,6 @@ class Footer extends StatelessWidget {
                               launch('https://instagram.com/ballin.app?igshid=skdrk7ox7w93');
                               },),
                             SizedBox(width: 10,),
-                            IconButton(icon: Icon(FontAwesomeIcons.facebookF,color: ThemeColors.whiteColor,),onPressed: (){},),
-                            SizedBox(width: 10,),
                             IconButton(icon: Icon(FontAwesomeIcons.linkedinIn,color: ThemeColors.whiteColor,),onPressed: (){
                               launch('https://www.linkedin.com/company/theballin/');
                             },),                        ],

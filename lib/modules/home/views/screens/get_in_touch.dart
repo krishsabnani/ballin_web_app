@@ -67,6 +67,10 @@ class _GetInTouchState extends State<GetInTouch> {
                                       onChanged: (val){
                                         name = val;
                                       },
+                                      validator: (val){
+                                        if(val.isEmpty) return "Please enter a Name!";
+                                        else return null;
+                                      },
                                     ),
                                     SizedBox(height: 20,),
                                     AppText.SubHeading(text: "Email",size: 15),
@@ -79,6 +83,10 @@ class _GetInTouchState extends State<GetInTouch> {
                                       onChanged: (val){
                                         email = val;
                                       },
+                                      validator: (val){
+                                        if(val.isEmpty) return "Please enter an Email!";
+                                        else return null;
+                                      },
                                     ),
                                     SizedBox(height: 20,),
                                     AppText.SubHeading(text: "Contact Number",size: 15),
@@ -90,6 +98,10 @@ class _GetInTouchState extends State<GetInTouch> {
                                       ),
                                       onChanged: (val){
                                         number = val;
+                                      },
+                                      validator: (val){
+                                        if(val.isEmpty) return "Please enter a Number!";
+                                        else return null;
                                       },
                                     ),
                                     SizedBox(height: 20,),
@@ -131,11 +143,21 @@ class _GetInTouchState extends State<GetInTouch> {
                                           "name" : name,
                                           "reason" : reason,
                                           "email" : email,
-                                          "phone" : number
+                                          "number" : number
                                         })){
                                           isSending = false;
                                           setState(() {
-
+                                            showDialog(context: context, builder: (ctx) =>Dialog(
+                                              child: Container(
+                                                padding: EdgeInsets.all(30),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    AppText.Content(text: "Sent Successfully!")
+                                                  ],
+                                                ),
+                                              ),
+                                            ));
                                           });
                                         }
                                         else {
@@ -146,6 +168,7 @@ class _GetInTouchState extends State<GetInTouch> {
                                       else if(reason == null){
                                         showDialog(context: context, builder: (ctx) =>Dialog(
                                           child: Container(
+                                            padding: EdgeInsets.all(30),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
@@ -234,6 +257,10 @@ class _GetInTouchState extends State<GetInTouch> {
                         onChanged: (val){
                           name = val;
                         },
+                        validator: (val){
+                          if(val.isEmpty) return "Please enter a Name!";
+                          else return null;
+                        },
                       ),
                       SizedBox(height: 20,),
                       AppText.SubHeading(text: "Email",size: 15),
@@ -245,6 +272,10 @@ class _GetInTouchState extends State<GetInTouch> {
                         ),
                         onChanged: (val){
                           email = val;
+                        },
+                        validator: (val){
+                          if(val.isEmpty) return "Please enter an Email!";
+                          else return null;
                         },
                       ),
                       SizedBox(height: 20,),
@@ -258,6 +289,10 @@ class _GetInTouchState extends State<GetInTouch> {
                         onChanged: (val){
                           number = val;
                         },
+                        validator: (val){
+                          if(val.isEmpty) return "Please enter a Number!";
+                          else return null;
+                        }
                       ),
                       SizedBox(height: 20,),
                       AppText.SubHeading(text: "Reason for connecting",size: 15),
@@ -285,11 +320,21 @@ class _GetInTouchState extends State<GetInTouch> {
                             "name" : name,
                             "reason" : reason,
                             "email" : email,
-                            "phone" : number
+                            "number" : number
                           })){
                             isSending = false;
                             setState(() {
-
+                              showDialog(context: context, builder: (ctx) =>Dialog(
+                                child: Container(
+                                  padding: EdgeInsets.all(30),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      AppText.Content(text: "Sent Successfully!")
+                                    ],
+                                  ),
+                                ),
+                              ));
                             });
                           }
                           else {
@@ -300,6 +345,8 @@ class _GetInTouchState extends State<GetInTouch> {
                         else if(reason == null){
                           showDialog(context: context, builder: (ctx) =>Dialog(
                             child: Container(
+                              padding: EdgeInsets.all(30),
+
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
