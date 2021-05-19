@@ -1,3 +1,4 @@
+import 'package:ballin_web_app/modules/home/data/services/blogs_provider.dart';
 import 'package:ballin_web_app/modules/home/data/services/page_provider.dart';
 import 'package:ballin_web_app/modules/home/views/screens/get_in_touch.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/menu_widget.dart';
@@ -22,6 +23,7 @@ class _BallinAppBarState extends State<BallinAppBar> {
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
+    BlogsProvider blogsProvider = Provider.of<BlogsProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(0),
       child: Material(
@@ -50,7 +52,11 @@ class _BallinAppBarState extends State<BallinAppBar> {
 
                           });
                         },
-                        child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,)),
+                        child: GestureDetector(
+                          onTap: ()async{
+                              //await blogsProvider.pushBlog();
+                          },
+                            child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,))),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,

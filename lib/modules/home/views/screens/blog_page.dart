@@ -87,24 +87,23 @@ class _BlogPageState extends State<BlogPage> {
             SizedBox(height: 15,),
             LayoutBuilder(builder:(context,constraint){
               if(constraint.maxWidth > 700){
-                return  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List.generate(blogsProvider.currentBlog.content.length, (index) => Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 105),
-                      child: buildContent(blogsProvider.currentBlog.content[index]),
-                    ))
+                return  Container(
+                  padding: EdgeInsets.symmetric(horizontal: 105),
+                  child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: List.generate(blogsProvider.currentBlog.content.length, (index) => buildContent(blogsProvider.currentBlog.content[index]))
 
+                  ),
                 );
               }
-              else return  Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(blogsProvider.currentBlog.content.length, (index) => Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 20),
-                    child: buildContent(blogsProvider.currentBlog.content[index]),
-                  ))
+              else return  Container(
+                padding:  EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(blogsProvider.currentBlog.content.length, (index) => buildContent(blogsProvider.currentBlog.content[index]))
 
+                ),
               );
             } ),
             SizedBox(height: 30,),
