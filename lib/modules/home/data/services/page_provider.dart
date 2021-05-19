@@ -9,7 +9,6 @@ class PageProvider extends ChangeNotifier{
 
   int currentTabIndex = 0;
   Tabs currentTab = Tabs.Home;
-  List<String> appBarOptions = ["Home","Shot Balls", "About","Ballin App"];
   bool isLoading = true;
   bool isMembersLoading = true;
   dynamic aboutData = Map();
@@ -26,6 +25,8 @@ class PageProvider extends ChangeNotifier{
       case 2 : currentTab = Tabs.About;
       break;
       case 3 : currentTab = Tabs.Ballin_Team;
+      break;
+      case 4 : currentTab = Tabs.Get_in_Touch;
       break;
       default: currentTab = Tabs.Home;
       break;
@@ -66,27 +67,34 @@ class PageProvider extends ChangeNotifier{
     }
   }
 
-  Future<void> queryMail(String email, name, number, query) async {
+  Future<bool> pushTouchInfo(Map<String,dynamic> data) async{
+    try{
+      await FirebaseFirestore.instance.collection("GetInTouch").add(data);
+      queryMail(data);
+      return true;
+    }
+    catch(e){
+      print(e);
+      return false;
+    }
+  }
+
+  Future<void> queryMail(Map<String,dynamic> data) async {
     await FirebaseFirestore.instance.collection('Mail').doc().set({
-      "to": email,
+      "to": data['email'],
       "template": {
         "name": 'GetInTouch',
-        "data": {"name": name}
+        "data": {"name": data['name']}
       }
     }).catchError((e) {
       print(e);
     });
 
     await FirebaseFirestore.instance.collection('Mail').doc().set({
-      "to": 'tech.semicoln.in',
+      "to": 'tech.semicoln@gmail.com',
       "template": {
         "name": 'GetInTouchAdmin',
-        "data": {
-          "name": name,
-          "email" : email,
-          "number" : number,
-          "reason" : query
-        }
+        "data": data
       }
     }).catchError((e) {
       print(e);

@@ -29,6 +29,7 @@ class _AboutPageState extends State<AboutPage> {
     return pageProvider.isLoading ? Center(child: CircularProgressIndicator())
         :ListView(
       shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         children: [
           LayoutBuilder(builder: (context,constraints){
             if(constraints.maxWidth > 700){

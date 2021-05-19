@@ -1,3 +1,4 @@
+import 'package:ballin_web_app/modules/home/data/services/blogs_provider.dart';
 import 'package:ballin_web_app/modules/home/data/services/page_provider.dart';
 import 'package:ballin_web_app/modules/home/views/screens/get_in_touch.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/menu_widget.dart';
@@ -16,12 +17,13 @@ class BallinAppBar extends StatefulWidget {
 
 class _BallinAppBarState extends State<BallinAppBar> {
 
-  List<String> appBarOptions = ["Home","Ballin Shots", "About","Ballin Team"];
+  List<String> appBarOptions = ["Home","Ballin Shots", "About","Ballin Team","Get In Touch"];
   int currentTabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
+    BlogsProvider blogsProvider = Provider.of<BlogsProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(0),
       child: Material(
@@ -50,7 +52,11 @@ class _BallinAppBarState extends State<BallinAppBar> {
 
                           });
                         },
-                        child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,)),
+                        child: GestureDetector(
+                          onTap: ()async{
+                              //await blogsProvider.pushBlog();
+                          },
+                            child: Image.asset("assets/images/logo_white.png",fit: BoxFit.contain,height: 75,width: 75,))),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -103,24 +109,18 @@ class _BallinAppBarState extends State<BallinAppBar> {
                           });
                         },
                       ),
-                      Padding(
-                        padding:  EdgeInsets.symmetric(horizontal:10),
-                        child: GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(
-                                settings: RouteSettings(name: 'get-in-touch'),
-                                builder: (context)=>GetInTouch()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:  BorderRadius.circular(10),
-                              color: ThemeColors.highlightColor,
-                            ),
-                            padding: EdgeInsets.all(10),
-                            child: AppText.Heading(text: "Get in Touch",color: ThemeColors.darkWhite,size: 16),
-                          ),
-                        ),
-                      )
+                      MenuWidget(
+                        title: "Get In Touch",
+                        isSelected: pageProvider.currentTab == Tabs.Get_in_Touch,
+                        onPress: (){
+                          currentTabIndex = appBarOptions.indexOf("Get In Touch");
+                          pageProvider.changeTab(currentTabIndex);
+                          widget.popFunc();
+                          setState(() {
+
+                          });
+                        },
+                      ),
                     ],
                   )
                 ],

@@ -33,7 +33,11 @@ class _BallinTeamPageState extends State<BallinTeamPage> {
               return ListView(
         shrinkWrap: true,
         children: [
-              AppText.Heading(text: "Our Team",color: ThemeColors.blackColor,size: 24),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppText.Heading(text: "Our Team",color: ThemeColors.blackColor,size: 24),
+          ),
               SizedBox(height: 20,),
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -52,6 +56,7 @@ class _BallinTeamPageState extends State<BallinTeamPage> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
+                  SizedBox(height: 20,),
                   Center(child: AppText.Heading(text: "Our Team",color: ThemeColors.blackColor,size: 24)),
                   SizedBox(height: 40,),
                   Column(

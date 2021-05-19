@@ -83,7 +83,6 @@ class AppText {
       decoration: decoration ?? TextDecoration.none,
       decorationColor: decorationColor ?? ThemeColors.whiteColor,
       height: 1.5,
-      wordSpacing: 3
     );
     return Text(
       text,
@@ -93,6 +92,7 @@ class AppText {
       maxLines: max,
     );
   }
+
   static Widget Content(
       {@required text,
         color,
