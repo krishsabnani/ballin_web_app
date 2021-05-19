@@ -36,7 +36,11 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppText.SubHeading(text: 'Welcome to Ballin!', color: ThemeColors.whiteColor, size: 25),
+                  GestureDetector(
+                      onTap: (){
+                        blogsProvider.pushBlog();
+                      },
+                      child: AppText.SubHeading(text: 'Welcome to Ballin!', color: ThemeColors.whiteColor, size: 25)),
                   SizedBox(height: 20,),
                   AppText.Content(text: 'Stay safe. Stay home.', color: ThemeColors.whiteColor, size: 15),
                 ],
