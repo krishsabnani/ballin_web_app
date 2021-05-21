@@ -6,6 +6,8 @@ import 'package:ballin_web_app/modules/home/views/screens/page_fork.dart';
 import 'package:ballin_web_app/utilities/screens/error_page.dart';
 import 'package:ballin_web_app/utilities/screens/loading_page.dart';
 import 'package:ballin_web_app/utilities/screens/splash_screen.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +26,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  FirebaseAnalytics analytics = FirebaseAnalytics();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,9 @@ class _AppState extends State<App> {
         ChangeNotifierProvider<BlogsProvider>(create: (_) => BlogsProvider())
       ],
       child: MaterialApp(
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: analytics),
+        ],
         title: "Ballin",
         debugShowCheckedModeBanner: false,
         onGenerateRoute: (settings){
@@ -74,6 +80,7 @@ class _AppState extends State<App> {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
+              FirebaseAnalytics().logEvent(name: 'site_open');
               return PageFork();
             }
 

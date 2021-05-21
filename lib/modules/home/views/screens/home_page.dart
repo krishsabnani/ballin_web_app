@@ -5,7 +5,9 @@ import 'package:ballin_web_app/modules/home/views/widgets/blog_card.dart';
 import 'package:ballin_web_app/modules/home/views/widgets/footer.dart';
 import 'package:ballin_web_app/utilities/app_text.dart';
 import 'package:ballin_web_app/utilities/colors.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   GestureDetector(
                       onTap: (){
-                        blogsProvider.pushBlog();
+                       // blogsProvider.pushBlog();
                       },
                       child: AppText.SubHeading(text: 'Welcome to Ballin!', color: ThemeColors.whiteColor, size: 25)),
                   SizedBox(height: 20,),
@@ -131,6 +133,11 @@ class _HomePageState extends State<HomePage> {
               child: GestureDetector(
                 onTap: (){
                   Navigator.pushNamed(context, "/blog/${blogs[index].id}");
+                  FirebaseAnalytics().logEvent(name: 'view_blog', parameters: {
+                    'blog_name' : blogs[index].title,
+                    'type' : blogs[index].type,
+                    'date' : DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(DateTime.now())
+                  });
                 },
                   child: BlogCard(blogs[index])),
             )),
@@ -147,6 +154,11 @@ class _HomePageState extends State<HomePage> {
             return GestureDetector(
                 onTap: (){
                   Navigator.pushNamed(context, "/blog/${blogs[index].id}");
+                  FirebaseAnalytics().logEvent(name: 'view_blog', parameters: {
+                    'blog_name' : blogs[index].title,
+                    'type' : blogs[index].type,
+                    'date' : DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(DateTime.now())
+                  });
                 },
                 child: BlogCard(blogs[index]));
       },
